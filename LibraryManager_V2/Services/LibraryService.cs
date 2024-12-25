@@ -10,7 +10,7 @@ namespace LibraryManager_V2.Services
 {
     internal class LibraryService
     {
-        private IBookRepository rep;
+        public IBookRepository rep;
         private List<Log> logs;
 
         public LibraryService(IBookRepository rep)
@@ -25,10 +25,10 @@ namespace LibraryManager_V2.Services
             logs.Add(new Log(logs.Count + 1, $"Book {book.Title} added to library", DateTime.Now));
         }
 
-        public void DeleteBook(Book book)
+        public void DeleteBook(int id)
         {
-            rep.DeleteBook(book.ID);
-            logs.Add(new Log(logs.Count + 1, $"Book {book.Title} removed from library", DateTime.Now));
+            rep.DeleteBook(id);
+            logs.Add(new Log(logs.Count + 1, $"Book {rep.GetBookById(id).Title} removed from library", DateTime.Now));
         }
 
         public void LendBook(Book book)
