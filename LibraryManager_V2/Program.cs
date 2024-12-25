@@ -8,15 +8,9 @@ namespace LibraryManager_V2
     {
         static void Main(string[] args)
         {
-            var service = new LibraryService(new BookRepository());
+            var service = new ConsoleService(new LibraryService(new BookRepository()));
 
-            service.AddBook(new Book(
-                0,
-                "The Hobbit",
-                "J.R.R. Tolkien",
-                Category.Fantasy,
-                5
-            ));
+            service.Run();
         }
     }
 }
