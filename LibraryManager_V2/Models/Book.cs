@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManager_V2.Models
 {
-    public enum Category
+    internal enum Category
     {
         Fantasy,
         ScienceFiction,
