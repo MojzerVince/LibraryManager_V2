@@ -59,7 +59,7 @@ namespace LibraryManager_V2.Repositories
             {
                 existing.Title = book.Title;
                 existing.Author = book.Author;
-                existing.ReleaseDate = book.ReleaseDate;
+                existing.Genre = book.Genre;
                 existing.Quantity = book.Quantity;
             }
             else
