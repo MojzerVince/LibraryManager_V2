@@ -10,13 +10,13 @@ namespace LibraryManager_V2.Models
     {
         public int ID { get; set; }
         public string Message { get; set; } = String.Empty;
-        public DateTime TimeStamp { get; set; }
+        public DateTime Date { get; set; }
 
-        public Log(int id, string message, DateTime timeStamp)
+        public Log(int id, string message, DateTime date)
         {
             ID = id;
             Message = message;
-            TimeStamp = timeStamp;
+            Date = date;
         }
     }
 }
