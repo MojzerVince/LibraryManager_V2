@@ -14,15 +14,14 @@ namespace LibraryManager_V2.Services
         public ConsoleService(LibraryService service)
         {
             this.service = service;
-        }
-
-        public void Run()
-        {
-            Console.Clear();
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Welcome to the Library Manager!");
             Console.ResetColor();
+        }
+
+        public void Run()
+        {
             Console.WriteLine("\nPlease select an option:");
             Console.WriteLine("0. Books");
             Console.WriteLine("1. Add a book");
@@ -37,6 +36,7 @@ namespace LibraryManager_V2.Services
             {
                 case "0":
                     GetAllBooks();
+                    Run();
                     break;
                 case "1":
                     AddBook();
@@ -54,7 +54,11 @@ namespace LibraryManager_V2.Services
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("Invalid option. Please try again.");
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("Invalid option. Please try again.");
+                    Console.ResetColor();
+                    Console.WriteLine();
                     Run();
                     break;
             }
@@ -63,7 +67,7 @@ namespace LibraryManager_V2.Services
         private void GetAllCategories()
         {
             Console.WriteLine();
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             foreach (Category c in Enum.GetValues(typeof(Category)))
             {
@@ -75,7 +79,7 @@ namespace LibraryManager_V2.Services
 
         private void GetAllBooks()
         {
-            Console.WriteLine();
+            Console.Clear();
             foreach (Book b in service.rep.GetAllBooks())
             {
                 Console.Write($"{b.ID} | ");
@@ -84,18 +88,16 @@ namespace LibraryManager_V2.Services
                 Console.Write($"{b.Genre} | ");
                 Console.Write($"{b.Quantity} left\n");
             }
-            Run();
         }
 
         private void DeleteBookById()
         {
-            Console.Clear();
+            GetAllBooks();
+            Console.WriteLine();
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Delete book");
             Console.ResetColor();
-            Console.WriteLine();
-            GetAllBooks();
             Console.Write("ID: ");
             int id = int.Parse(Console.ReadLine());
             service.DeleteBook(id);
@@ -121,6 +123,11 @@ namespace LibraryManager_V2.Services
             int quantity = int.Parse(Console.ReadLine());
 
             service.AddBook(new Book(0, title, author, (Category)Enum.Parse(typeof(Category), genre), quantity));
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write("Book successfully added!");
+            Console.ResetColor();
+            Console.WriteLine();
             Run();
         }
     }
