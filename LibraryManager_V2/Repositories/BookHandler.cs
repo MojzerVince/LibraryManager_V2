@@ -18,12 +18,13 @@ namespace LibraryManager_V2.Repositories
 
         public void AddBook(Book book)
         {
+            book.ID = GenerateID();
             books.Add(book);
         }
 
         public void DeleteBook(int id)
         {
-            for(int i = 0; i < books.Count; i++)
+            for (int i = 0; i < books.Count; i++)
             {
                 if (books[i].ID == id)
                 {
@@ -40,14 +41,12 @@ namespace LibraryManager_V2.Repositories
 
         public Book? GetBookById(int id)
         {
-            for(int i = 0; i < books.Count; i++)
+            for (int i = 0; i < books.Count; i++)
             {
                 if (books[i].ID == id)
                 {
                     return books[i];
                 }
-                else
-                    throw new Exception("Book not found");
             }
             return null;
         }
@@ -59,13 +58,26 @@ namespace LibraryManager_V2.Repositories
             {
                 existing.Title = book.Title;
                 existing.Author = book.Author;
-                existing.ReleaseDate = book.ReleaseDate;
+                existing.Genre = book.Genre;
                 existing.Quantity = book.Quantity;
             }
             else
             {
                 throw new Exception("Book not found");
             }
+        }
+
+        private int GenerateID()
+        {
+            int id = 0;
+            foreach (Book b in books)
+            {
+                if (b.ID > id)
+                {
+                    id = b.ID;
+                }
+            }
+            return ++id;
         }
     }
 }

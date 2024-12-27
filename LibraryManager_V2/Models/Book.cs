@@ -40,9 +40,8 @@ namespace LibraryManager_V2.Models
         public Category Genre { get; set; }
         public int Quantity { get; set; }
 
-        public Book(int id, string title, string author, Category genre, int quantity)
+        public Book(string title, string author, Category genre, int quantity)
         {
-            ID = id;
             Title = title;
             Author = author;
             Genre = genre;
