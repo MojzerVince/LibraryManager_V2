@@ -22,13 +22,13 @@ namespace LibraryManager_V2.Services
         public void AddBook(Book book)
         {
             rep.AddBook(book);
-            logs.Add(new Log(logs.Count + 1, $"Book {book.Title} added to library", DateTime.Now));
+            logs.Add(new Log(logs.Count + 1, $"Book {book.Title} was added to library", DateTime.Now));
         }
 
         public void DeleteBook(int id)
         {
+            logs.Add(new Log(logs.Count + 1, $"Book {rep.GetBookById(id).Title} was removed from library", DateTime.Now));
             rep.DeleteBook(id);
-            logs.Add(new Log(logs.Count + 1, $"Book {rep.GetBookById(id).Title} removed from library", DateTime.Now));
         }
 
         public void LendBook(Book book)
