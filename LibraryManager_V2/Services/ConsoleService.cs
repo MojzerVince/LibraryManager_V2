@@ -30,7 +30,7 @@ namespace LibraryManager_V2.Services
             Console.WriteLine("0. Books");
             Console.WriteLine("1. Add a book");
             Console.WriteLine("2. Delete a book");
-            Console.WriteLine("3. Lend a book");
+            Console.WriteLine("3. Check logs");
             Console.WriteLine("4. Return a book");
             Console.WriteLine("5. Exit\n");
 
@@ -49,7 +49,7 @@ namespace LibraryManager_V2.Services
                     DeleteBookById();
                     break;
                 case "3":
-                    //LendBook();
+                    LogCheck();
                     break;
                 case "4":
                     //ReturnBook();
@@ -132,6 +132,18 @@ namespace LibraryManager_V2.Services
             Console.Write("Book successfully added!");
             Console.ResetColor();
             Console.WriteLine();
+            Run();
+        }
+
+        private void LogCheck()
+        {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Logs");
+            Console.ResetColor();
+            Console.WriteLine();
+            service.ReturnLogs().ForEach(l => Console.WriteLine($"{l.ID} | {l.Message} | {l.Date}"));
             Run();
         }
     }
