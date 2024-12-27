@@ -18,6 +18,10 @@ namespace LibraryManager_V2.Services
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Welcome to the Library Manager!");
             Console.ResetColor();
+
+            //TEST ONLY
+            service.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", Category.Fantasy, 5));
+            service.AddBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", Category.Fantasy, 3));
         }
 
         public void Run()
@@ -122,7 +126,7 @@ namespace LibraryManager_V2.Services
             Console.Write("Quantity available: ");
             int quantity = int.Parse(Console.ReadLine());
 
-            service.AddBook(new Book(0, title, author, (Category)Enum.Parse(typeof(Category), genre), quantity));
+            service.AddBook(new Book(title, author, (Category)Enum.Parse(typeof(Category), genre), quantity));
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Write("Book successfully added!");
