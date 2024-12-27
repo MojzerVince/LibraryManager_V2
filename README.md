@@ -4,11 +4,12 @@ Made by: **Mojzer Vince**
 ### Features
 * Storing books and their data
 * Add/Delete books
-* Lend/Return books
+* Logging
 
 ## NOT ALL FEATURES ARE IMPLEMENTED
 
 ### Future plans
+* Lend/Return books
 * Export data (to txt)
 * Import data (from txt)
 * Use a DataBase
