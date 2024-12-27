@@ -22,12 +22,12 @@ namespace LibraryManager_V2.Services
         public void AddBook(Book book)
         {
             rep.AddBook(book);
-            logs.Add(new Log(logs.Count + 1, $"Book {book.Title} was added to library", DateTime.Now));
+            logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' was added to library", DateTime.Now));
         }
 
         public void DeleteBook(int id)
         {
-            logs.Add(new Log(logs.Count + 1, $"Book {rep.GetBookById(id).Title} was removed from library", DateTime.Now));
+            logs.Add(new Log(logs.Count + 1, $"Book '{rep.GetBookById(id).Title}' was removed from library", DateTime.Now));
             rep.DeleteBook(id);
         }
 
@@ -38,12 +38,12 @@ namespace LibraryManager_V2.Services
                 if(b.ID == book.ID && b.Quantity > 0)
                 {
                     b.Quantity--;
-                    logs.Add(new Log(logs.Count + 1, $"Book {book.Title} was lended", DateTime.Now));
+                    logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' was lended", DateTime.Now));
                 }
                 else if(b.ID == book.ID && b.Quantity == 0)
                 {
                     //OUT OF STOCK
-                    logs.Add(new Log(logs.Count + 1, $"Book {book.Title} is out of stock", DateTime.Now));
+                    logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' is out of stock", DateTime.Now));
                 }
             }
         }
@@ -55,9 +55,14 @@ namespace LibraryManager_V2.Services
                 if (b.ID == book.ID && b.Quantity > 0)
                 {
                     b.Quantity++;
-                    logs.Add(new Log(logs.Count + 1, $"Book {book.Title} was returned", DateTime.Now));
+                    logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' was returned", DateTime.Now));
                 }
             }
+        }
+
+        public List<Log> ReturnLogs()
+        {
+            return logs;
         }
     }
 }
