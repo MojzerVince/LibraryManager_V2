@@ -7,7 +7,7 @@ using LibraryManager_V2.Models;
 
 namespace LibraryManager_V2.Repositories
 {
-    internal interface IBookRepository
+    public interface IBookRepository
     {
         List<Book> GetAllBooks();
         Book? GetBookById(int id);

@@ -8,16 +8,10 @@ using System.Threading.Tasks;
 
 namespace LibraryManager_V2.Services
 {
-    internal class LibraryService
+    public class LibraryService(IBookRepository rep)
     {
-        public IBookRepository rep;
-        private List<Log> logs;
-
-        public LibraryService(IBookRepository rep)
-        {
-            this.rep = rep;
-            logs = new List<Log>();
-        }
+        public IBookRepository rep = rep;
+        private List<Log> logs = new List<Log>();
 
         public void AddBook(Book book)
         {

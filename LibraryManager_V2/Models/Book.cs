@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManager_V2.Models
 {
-    internal enum Category
+    public enum Category
     {
         Fantasy,
         ScienceFiction,
@@ -32,7 +32,7 @@ namespace LibraryManager_V2.Models
         Science,
     }
 
-    internal class Book
+    public class Book
     {
         public int ID { get; set; }
         public string Title { get; set; } = String.Empty;
