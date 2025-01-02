@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManager_V2.Repositories
 {
-    internal class BookRepository : IBookRepository
+    public class BookRepository : IBookRepository
     {
         private List<Book> books;
 
