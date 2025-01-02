@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManager_V2.Models
 {
-    internal class Log
+    public class Log
     {
         public int ID { get; set; }
         public string Message { get; set; } = String.Empty;
