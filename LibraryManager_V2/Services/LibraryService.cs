@@ -8,20 +8,25 @@ using System.Threading.Tasks;
 
 namespace LibraryManager_V2.Services
 {
-    public class LibraryService(IBookRepository rep)
+    public class LibraryService(IBookRepository rep) : LoggerService
     {
         public IBookRepository rep = rep;
+        private LoggerService logger = new LoggerService();
         private List<Log> logs = new List<Log>();
 
         public void AddBook(Book book)
         {
             rep.AddBook(book);
-            logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' was added to library", DateTime.Now));
+            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' was added to library");
+            logs.Add(log);
+            logger.SaveToLog(log);
         }
 
         public void DeleteBook(int id)
         {
-            logs.Add(new Log(logs.Count + 1, $"Book '{rep.GetBookById(id).Title}' was removed from library", DateTime.Now));
+            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{rep.GetBookById(id).Title}' was removed from library");
+            logs.Add(log);
+            logger.SaveToLog(log);
             rep.DeleteBook(id);
         }
 
@@ -32,12 +37,15 @@ namespace LibraryManager_V2.Services
                 if(b.ID == book.ID && b.Quantity > 0)
                 {
                     b.Quantity--;
-                    logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' was lended", DateTime.Now));
+                    Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' was lended");
+                    logs.Add(log);
+                    logger.SaveToLog(log);
                 }
                 else if(b.ID == book.ID && b.Quantity == 0)
                 {
-                    //OUT OF STOCK
-                    logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' is out of stock", DateTime.Now));
+                    Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' is out of stock");
+                    logs.Add(log);
+                    logger.SaveToLog(log);
                 }
             }
         }
@@ -49,7 +57,9 @@ namespace LibraryManager_V2.Services
                 if (b.ID == book.ID && b.Quantity > 0)
                 {
                     b.Quantity++;
-                    logs.Add(new Log(logs.Count + 1, $"Book '{book.Title}' was returned", DateTime.Now));
+                    Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' was returned");
+                    logs.Add(log);
+                    logger.SaveToLog(log);
                 }
             }
         }
@@ -57,6 +67,11 @@ namespace LibraryManager_V2.Services
         public List<Log> ReturnLogs()
         {
             return logs;
+        }
+
+        public void LoadLogs()
+        {
+            logs = logger.LoadLogs();
         }
     }
 }
