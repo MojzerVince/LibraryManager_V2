@@ -19,7 +19,8 @@ namespace LibraryManager_V2.Services
             Console.WriteLine("Welcome to the Library Manager!");
             Console.ResetColor();
             service.LoadLogs();
-
+            service.LoadBooks();
+          
             //TEST ONLY
             //service.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", Category.Fantasy, 5));
             //service.AddBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", Category.Fantasy, 3));
@@ -33,7 +34,7 @@ namespace LibraryManager_V2.Services
             Console.WriteLine("2. Delete a book");
             Console.WriteLine("3. Check logs");
             Console.WriteLine("4. Return a book");
-            Console.WriteLine("5. Exit\n");
+            Console.WriteLine("5. Save and Exit\n");
 
             string input = Console.ReadLine();
 
@@ -56,6 +57,7 @@ namespace LibraryManager_V2.Services
                     //ReturnBook();
                     break;
                 case "5":
+                    service.SaveBooks();
                     Environment.Exit(0);
                     break;
                 default:

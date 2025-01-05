@@ -47,5 +47,10 @@ namespace LibraryManager_V2.Models
             Genre = genre;
             Quantity = quantity;
         }
+
+        public override string ToString()
+        {
+            return $"{ID}|{Title}|{Author}|{Genre}|{Quantity}";
+        }
     }
 }
