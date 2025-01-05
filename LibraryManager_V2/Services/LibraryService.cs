@@ -69,7 +69,7 @@ namespace LibraryManager_V2.Services
             return logs;
         }
 
-        public void LoadLogs()
+        public new void LoadLogs()
         {
             logs = logger.LoadLogs();
         }
