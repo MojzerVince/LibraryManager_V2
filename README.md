@@ -5,6 +5,7 @@ Made by: **Mojzer Vince**
 * Storing books and their data
 * Add/Delete books
 * Logging
+* Different *.exe* for Student and Admin
 
 ## NOT ALL FEATURES ARE IMPLEMENTED
 
@@ -13,6 +14,5 @@ Made by: **Mojzer Vince**
 * Export data (to txt)
 * Import data (from txt)
 * Use a DataBase
-* Different *.exe* for Student and Admin
 * Manage students in Admin
 * Manage books in Admin
