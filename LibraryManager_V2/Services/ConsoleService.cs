@@ -143,7 +143,8 @@ namespace LibraryManager_V2.Services
             Console.WriteLine("Logs");
             Console.ResetColor();
             Console.WriteLine();
-            service.ReturnLogs().ForEach(l => Console.WriteLine($"{l.ID} | {l.Message} | {l.Date}"));
+            foreach (Log l in service.ReturnLogs())
+                Console.WriteLine(l);
             Run();
         }
     }
