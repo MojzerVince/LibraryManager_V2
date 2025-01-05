@@ -18,10 +18,11 @@ namespace LibraryManager_V2.Services
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Welcome to the Library Manager!");
             Console.ResetColor();
+            service.LoadLogs();
 
             //TEST ONLY
-            service.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", Category.Fantasy, 5));
-            service.AddBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", Category.Fantasy, 3));
+            //service.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", Category.Fantasy, 5));
+            //service.AddBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", Category.Fantasy, 3));
         }
 
         public void Run()
