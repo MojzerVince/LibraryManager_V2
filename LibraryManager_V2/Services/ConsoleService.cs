@@ -30,11 +30,12 @@ namespace LibraryManager_V2.Services
         {
             Console.WriteLine("\nPlease select an option:");
             Console.WriteLine("0. Books");
-            Console.WriteLine("1. Add a book");
-            Console.WriteLine("2. Delete a book");
-            Console.WriteLine("3. Check logs");
-            Console.WriteLine("4. Check messages");
-            Console.WriteLine("5. Save and Exit\n");
+            Console.WriteLine("1. Add book");
+            Console.WriteLine("2. Update book");
+            Console.WriteLine("3. Delete book");
+            Console.WriteLine("4. Check logs");
+            Console.WriteLine("5. Check messages");
+            Console.WriteLine("6. Save and Exit\n");
 
             string input = Console.ReadLine();
 
@@ -48,15 +49,18 @@ namespace LibraryManager_V2.Services
                     AddBook();
                     break;
                 case "2":
-                    DeleteBookById();
+                    //UpdateBook();
                     break;
                 case "3":
-                    LogCheck();
+                    DeleteBookById();
                     break;
                 case "4":
-                    //MessageCheck();
+                    LogCheck();
                     break;
                 case "5":
+                    //MessageCheck();
+                    break;
+                case "6":
                     service.SaveBooks();
                     Environment.Exit(0);
                     break;

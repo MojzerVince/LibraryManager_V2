@@ -44,9 +44,7 @@ namespace LibraryManager_V2.Repositories
             for (int i = 0; i < books.Count; i++)
             {
                 if (books[i].ID == id)
-                {
                     return books[i];
-                }
             }
             return null;
         }
@@ -61,10 +59,6 @@ namespace LibraryManager_V2.Repositories
                 existing.Genre = book.Genre;
                 existing.Quantity = book.Quantity;
             }
-            else
-            {
-                throw new Exception("Book not found");
-            }
         }
 
         private int GenerateID()
@@ -73,9 +67,7 @@ namespace LibraryManager_V2.Repositories
             foreach (Book b in books)
             {
                 if (b.ID > id)
-                {
                     id = b.ID;
-                }
             }
             return ++id;
         }
