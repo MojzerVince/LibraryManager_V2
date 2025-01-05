@@ -84,7 +84,26 @@ namespace LibraryManager_V2_Student.Services
             Console.Write("\nPlease enter the ID of the book you want to lend: ");
             int id = int.Parse(Console.ReadLine());
             if(service.rep.GetBookById(id) != null)
-                service.LendBook(service.rep.GetBookById(id));
+            {
+                if(service.rep.GetBookById(id).Quantity == 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("Out of stock!");
+                    Console.ResetColor();
+                    Console.WriteLine();
+                    Run();
+                }
+                else
+                {
+                    service.LendBook(service.rep.GetBookById(id));
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("Successfully lended the book!");
+                    Console.ResetColor();
+                    Console.WriteLine();
+                }
+            }
             else
             {
                 Console.BackgroundColor = ConsoleColor.Red;
