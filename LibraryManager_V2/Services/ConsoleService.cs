@@ -107,7 +107,16 @@ namespace LibraryManager_V2.Services
             Console.ResetColor();
             Console.Write("ID: ");
             int id = int.Parse(Console.ReadLine());
+            if(service.rep.GetBookById(id) != null)
             service.DeleteBook(id);
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write("Invalid ID!");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
             Run();
         }
 
