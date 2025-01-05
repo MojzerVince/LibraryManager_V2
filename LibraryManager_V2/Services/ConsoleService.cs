@@ -33,7 +33,7 @@ namespace LibraryManager_V2.Services
             Console.WriteLine("1. Add a book");
             Console.WriteLine("2. Delete a book");
             Console.WriteLine("3. Check logs");
-            Console.WriteLine("4. Return a book");
+            Console.WriteLine("4. Check messages");
             Console.WriteLine("5. Save and Exit\n");
 
             string input = Console.ReadLine();
@@ -54,7 +54,7 @@ namespace LibraryManager_V2.Services
                     LogCheck();
                     break;
                 case "4":
-                    //ReturnBook();
+                    //MessageCheck();
                     break;
                 case "5":
                     service.SaveBooks();
@@ -108,7 +108,7 @@ namespace LibraryManager_V2.Services
             Console.Write("ID: ");
             int id = int.Parse(Console.ReadLine());
             if(service.rep.GetBookById(id) != null)
-            service.DeleteBook(id);
+                service.DeleteBook(id);
             else
             {
                 Console.BackgroundColor = ConsoleColor.Red;
