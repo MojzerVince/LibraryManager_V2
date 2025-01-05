@@ -12,6 +12,7 @@ namespace LibraryManager_V2.Services
     {
         public IBookRepository rep = rep;
         private LoggerService logger = new LoggerService();
+        private FileService files = new FileService();
         private List<Log> logs = new List<Log>();
 
         public void AddBook(Book book)
@@ -63,6 +64,20 @@ namespace LibraryManager_V2.Services
                 }
             }
         }
+
+        public void LoadBooks()
+        {
+            foreach(Book b in files.LoadLibrary())
+            {
+                rep.AddBook(b);
+            }
+        }
+
+        public void SaveBooks()
+        {
+            files.SaveLibrary(rep.GetAllBooks());
+        }
+
 
         public List<Log> ReturnLogs()
         {
