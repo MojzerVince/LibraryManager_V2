@@ -12,7 +12,6 @@ namespace LibraryManager_V2.Repositories
         List<Book> GetAllBooks();
         Book? GetBookById(int id);
         void AddBook(Book book);
-        void UpdateBook(Book book);
         void DeleteBook(int id);
     }
 }

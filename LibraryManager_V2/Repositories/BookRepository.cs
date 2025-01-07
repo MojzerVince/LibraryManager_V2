@@ -49,18 +49,6 @@ namespace LibraryManager_V2.Repositories
             return null;
         }
 
-        public void UpdateBook(Book book)
-        {
-            Book existing = GetBookById(book.ID);
-            if (existing != null)
-            {
-                existing.Title = book.Title;
-                existing.Author = book.Author;
-                existing.Genre = book.Genre;
-                existing.Quantity = book.Quantity;
-            }
-        }
-
         private int GenerateID()
         {
             int id = 0;
