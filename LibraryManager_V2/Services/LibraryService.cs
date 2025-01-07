@@ -31,6 +31,13 @@ namespace LibraryManager_V2.Services
             rep.DeleteBook(id);
         }
 
+        public void CreateCustomLog(string message)
+        {
+            Log log = new Log(logs.Count + 1, DateTime.Now, message);
+            logs.Add(log);
+            logger.SaveToLog(log);
+        }
+
         public void LendBook(Book book)
         {
             foreach (Book b in rep.GetAllBooks())

@@ -49,7 +49,7 @@ namespace LibraryManager_V2.Services
                     AddBook();
                     break;
                 case "2":
-                    //UpdateBook();
+                    UpdateBook();
                     break;
                 case "3":
                     DeleteBookById();
@@ -151,6 +151,72 @@ namespace LibraryManager_V2.Services
             Run();
         }
 
+        private void UpdateBook()
+        {
+            GetAllBooks();
+            Console.WriteLine();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Update book");
+            Console.ResetColor();
+            Console.Write("ID: ");
+            int id = int.Parse(Console.ReadLine());
+            if (service.rep.GetBookById(id) != null)
+            {
+                Console.WriteLine("Enter the part for update:");
+                Console.WriteLine("0. Title");
+                Console.WriteLine("1. Author");
+                Console.WriteLine("2. Genre");
+                Console.WriteLine("3. Quantity\n");
+                string input = Console.ReadLine();
+                Console.WriteLine();
+                switch (input)
+                {
+                    case "0":
+                        Console.Write("New title: ");
+                        service.rep.GetBookById(id).Title = Console.ReadLine();
+                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s title was updated");
+                        Success();
+                        break;
+                    case "1":
+                        Console.Write("New author: ");
+                        service.rep.GetBookById(id).Author = Console.ReadLine();
+                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s author was updated");
+                        Success();
+                        break;
+                    case "2":
+                        Console.Write("New genre: ");
+                        GetAllCategories();
+                        service.rep.GetBookById(id).Genre = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
+                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s genre was updated");
+                        Success();
+                        break;
+                    case "3":
+                        Console.Write("New quantity: ");
+                        service.rep.GetBookById(id).Quantity = int.Parse(Console.ReadLine());
+                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s quantity was updated");
+                        Success();
+                        break;
+                    default:
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("Invalid option!");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        break;
+                }
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write("Invalid ID!");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            Run();
+        }
+
         private void LogCheck()
         {
             Console.Clear();
@@ -162,6 +228,16 @@ namespace LibraryManager_V2.Services
             foreach (Log l in service.ReturnLogs())
                 Console.WriteLine(l);
             Run();
+        }
+
+        private void Success()
+        {
+            Console.WriteLine();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write("Successfull operation!");
+            Console.ResetColor();
+            Console.WriteLine();
         }
     }
 }
