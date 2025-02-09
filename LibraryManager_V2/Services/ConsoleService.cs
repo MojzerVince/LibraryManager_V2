@@ -37,30 +37,37 @@ namespace LibraryManager_V2.Services
             Console.WriteLine("5. Check messages");
             Console.WriteLine("6. Save and Exit\n");
 
-            string input = Console.ReadLine();
-
-            switch (input)
+            ConsoleKeyInfo consoleKeyInfo = Console.ReadKey(true);
+            Console.WriteLine();
+            switch (consoleKeyInfo.Key)
             {
-                case "0":
+                case ConsoleKey.D0:
+                case ConsoleKey.NumPad0:
                     GetAllBooks();
                     Run();
                     break;
-                case "1":
+                case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
                     AddBook();
                     break;
-                case "2":
+                case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
                     UpdateBook();
                     break;
-                case "3":
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
                     DeleteBookById();
                     break;
-                case "4":
+                case ConsoleKey.D4:
+                case ConsoleKey.NumPad4:
                     LogCheck();
                     break;
-                case "5":
+                case ConsoleKey.D5:
+                case ConsoleKey.NumPad5:
                     //MessageCheck();
                     break;
-                case "6":
+                case ConsoleKey.D6:
+                case ConsoleKey.NumPad6:
                     service.SaveBooks();
                     Environment.Exit(0);
                     break;
@@ -167,35 +174,40 @@ namespace LibraryManager_V2.Services
             int id = int.Parse(Console.ReadLine());
             if (service.rep.GetBookById(id) != null)
             {
+                Console.WriteLine();
                 Console.WriteLine("Enter the part for update:");
                 Console.WriteLine("0. Title");
                 Console.WriteLine("1. Author");
                 Console.WriteLine("2. Genre");
                 Console.WriteLine("3. Quantity\n");
-                string input = Console.ReadLine();
+                ConsoleKeyInfo consoleKeyInfo = Console.ReadKey(true);
                 Console.WriteLine();
-                switch (input)
+                switch (consoleKeyInfo.Key)
                 {
-                    case "0":
+                    case ConsoleKey.D0:
+                    case ConsoleKey.NumPad0:
                         Console.Write("New title: ");
                         service.rep.GetBookById(id).Title = Console.ReadLine();
                         service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s title was updated");
                         Success();
                         break;
-                    case "1":
+                    case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         Console.Write("New author: ");
                         service.rep.GetBookById(id).Author = Console.ReadLine();
                         service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s author was updated");
                         Success();
                         break;
-                    case "2":
+                    case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         GetAllCategories();
                         Console.Write("\nNew genre: ");
                         service.rep.GetBookById(id).Genre = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
                         service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s genre was updated");
                         Success();
                         break;
-                    case "3":
+                    case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         Console.Write("New quantity: ");
                         service.rep.GetBookById(id).Quantity = int.Parse(Console.ReadLine());
                         service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s quantity was updated");
