@@ -64,11 +64,13 @@ namespace LibraryManager_V2.Services
                     break;
                 case ConsoleKey.D5:
                 case ConsoleKey.NumPad5:
-                    //MessageCheck();
+                    MessageCheck();
                     break;
                 case ConsoleKey.D6:
                 case ConsoleKey.NumPad6:
                     service.SaveBooks();
+                    Console.WriteLine("Exiting...");
+                    Thread.Sleep(500);
                     Environment.Exit(0);
                     break;
                 default:
@@ -109,6 +111,7 @@ namespace LibraryManager_V2.Services
                 Console.Write($"{b.Author} | ");
                 Console.Write($"{b.Genre} | ");
                 Console.Write($"{b.Quantity} left\n");
+                Thread.Sleep(15);
             }
         }
 
@@ -242,7 +245,10 @@ namespace LibraryManager_V2.Services
             Console.ResetColor();
             Console.WriteLine();
             foreach (Log l in service.ReturnLogs())
+            {
                 Console.WriteLine(l);
+                Thread.Sleep(15);
+            }
             Run();
         }
 
@@ -254,6 +260,11 @@ namespace LibraryManager_V2.Services
             Console.Write("Successfull operation!");
             Console.ResetColor();
             Console.WriteLine();
+        }
+
+        private void MessageCheck()
+        {
+
         }
     }
 }
