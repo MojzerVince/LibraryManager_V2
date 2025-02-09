@@ -77,14 +77,18 @@ namespace LibraryManager_V2.Services
 
         private void GetAllCategories()
         {
-            Console.WriteLine();
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            foreach (Category c in Enum.GetValues(typeof(Category)))
+            Console.Clear();
+            foreach (var c in Enum.GetValues(typeof(Category)))
             {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine(c);
+                Console.ResetColor();
+                Thread.Sleep(10);
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
             }
-            Console.ResetColor();
             Console.WriteLine();
         }
 
@@ -185,8 +189,8 @@ namespace LibraryManager_V2.Services
                         Success();
                         break;
                     case "2":
-                        Console.Write("New genre: ");
                         GetAllCategories();
+                        Console.Write("\nNew genre: ");
                         service.rep.GetBookById(id).Genre = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
                         service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s genre was updated");
                         Success();
