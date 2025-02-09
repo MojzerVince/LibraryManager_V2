@@ -16,16 +16,16 @@ namespace LibraryManager_V2.Services
 
         private void CheckForSaveFile()
         {
-            if (!File.Exists("library.txt"))
+            if (!File.Exists("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\library.txt"))
             {
-                FileStream fs = File.Create("library.txt");
+                FileStream fs = File.Create("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\library.txt");
                 fs.Close();
             }
         }
 
         public void SaveLibrary(List<Book> books)
         {
-            StreamWriter sw = new StreamWriter("library.txt");
+            StreamWriter sw = new StreamWriter("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\library.txt");
             foreach (Book book in books)
                 sw.WriteLine(book.ToString());
             sw.Close();
@@ -33,7 +33,7 @@ namespace LibraryManager_V2.Services
 
         public List<Book> LoadLibrary()
         {
-            StreamReader sr = new StreamReader("library.txt");
+            StreamReader sr = new StreamReader("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\library.txt");
             string line;
             List<Book> books = new List<Book>();
             while (!sr.EndOfStream)
