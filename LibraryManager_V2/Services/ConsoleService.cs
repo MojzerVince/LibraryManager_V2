@@ -65,6 +65,7 @@ namespace LibraryManager_V2.Services
                 case ConsoleKey.D5:
                 case ConsoleKey.NumPad5:
                     MessageCheck();
+                    Run();
                     break;
                 case ConsoleKey.D6:
                 case ConsoleKey.NumPad6:
@@ -264,7 +265,11 @@ namespace LibraryManager_V2.Services
 
         private void MessageCheck()
         {
-
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("This feature is not yet implemented!");
+            Console.ResetColor();
         }
     }
 }
