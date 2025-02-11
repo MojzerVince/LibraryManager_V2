@@ -50,7 +50,7 @@ namespace LibraryManager_V2_Student.Services
                     //ReturnBook();
                     break;
                 case "3":
-                    //SendMessage();
+                    SendMessage();
                     break;
                 case "4":
                     Environment.Exit(0);
@@ -114,6 +114,11 @@ namespace LibraryManager_V2_Student.Services
                 Console.WriteLine();
             }
             Run();
+        }
+
+        private void SendMessage()
+        {
+
         }
     }
 }
