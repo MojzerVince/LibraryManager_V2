@@ -21,6 +21,7 @@ namespace LibraryManager_V2.Services
             Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' was added to library");
             logs.Add(log);
             logger.SaveToLog(log);
+            SaveBooks();
         }
 
         public void DeleteBook(int id)
