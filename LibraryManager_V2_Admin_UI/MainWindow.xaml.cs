@@ -38,6 +38,7 @@ namespace LibraryManager_V2_Admin_UI
 
         private void LoadBooks()
         {
+            BooksView.Children.Clear(); //Törli a régi könyveket a nézetből és megelőzi a duplikációt
             var books = libraryService.rep.GetAllBooks();
             foreach (var book in books)
             {
@@ -74,6 +75,7 @@ namespace LibraryManager_V2_Admin_UI
             }
         }
 
+        //Leellenőrzi, hogy a felhasználó csak számokat írjon be a Quantity input mezőbe
         private void Integer(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !e.Text.All(cc => Char.IsNumber(cc));
@@ -85,6 +87,7 @@ namespace LibraryManager_V2_Admin_UI
             Book b = new Book(Title.Text, Author.Text, (Category)Genres.SelectedIndex, Int32.Parse(Quantity.Text));
             libraryService.AddBook(b);
             MessageBox.Show("Book added successfully!");
+            LoadBooks();
         }
     }
 }
