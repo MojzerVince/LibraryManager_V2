@@ -25,7 +25,7 @@ namespace LibraryManager_V2.Services
 
         public void SaveLibrary(List<Book> books)
         {
-            StreamWriter sw = new StreamWriter("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\library.txt");
+            StreamWriter sw = new StreamWriter("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\library.txt", false);
             foreach (Book book in books)
                 sw.WriteLine(book.ToString());
             sw.Close();
