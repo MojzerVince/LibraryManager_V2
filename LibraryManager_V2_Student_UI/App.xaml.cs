@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace LibraryManager_V2_Student_UI
+namespace LibraryManager_V2_Admin_UI
 {
     /// <summary>
     /// Interaction logic for App.xaml

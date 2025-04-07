@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager_V2", "LibraryManager_V2\LibraryManager_V2.csproj", "{5887CAA0-7C0A-47AB-8B6C-23D1EE922934}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager_V2_Student", "LibraryManager_V2_Student\LibraryManager_V2_Student.csproj", "{8A75F6C1-3B73-46B4-A337-1B3FAF010178}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager_V2_Student", "LibraryManager_V2_Student\LibraryManager_V2_Student.csproj", "{8A75F6C1-3B73-46B4-A337-1B3FAF010178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager_V2_Student_UI", "LibraryManager_V2_Student_UI\LibraryManager_V2_Student_UI.csproj", "{04A629D7-1AAF-4CC4-B59F-FF4F9EEB8238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager_V2_Admin_UI", "LibraryManager_V2_Student_UI\LibraryManager_V2_Admin_UI.csproj", "{04A629D7-1AAF-4CC4-B59F-FF4F9EEB8238}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
