@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManager_V2_Admin_UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1200">
     <Grid Background="#171717">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -31,5 +31,8 @@
             <TextBox x:Name="Quantity" Width="100" Height="20" Margin="5" PreviewTextInput="Integer"/>
             <Button Content="Add Book" Width="100" Height="20" Margin="5" Click="AddBook"/>
         </StackPanel>
+        <WrapPanel x:Name="BooksView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="4">
+            
+        </WrapPanel>
     </Grid>
 </Window>
