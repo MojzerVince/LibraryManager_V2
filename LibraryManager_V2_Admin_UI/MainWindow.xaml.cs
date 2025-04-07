@@ -68,7 +68,8 @@ namespace LibraryManager_V2_Admin_UI
                 bookCard.Children.Add(editButton);
 
                 //Delete Button
-                Button deleteButton = new Button { Content = "Delete", Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+                Button deleteButton = new Button { Content = "Delete", Name = $"ID_{book.ID}", Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+                deleteButton.Click += DeleteBook;
                 bookCard.Children.Add(deleteButton);
 
                 BooksView.Children.Add(bookCard);
@@ -87,6 +88,16 @@ namespace LibraryManager_V2_Admin_UI
             Book b = new Book(Title.Text, Author.Text, (Category)Genres.SelectedIndex, Int32.Parse(Quantity.Text));
             libraryService.AddBook(b);
             MessageBox.Show("Book added successfully!");
+            LoadBooks();
+        }
+
+        private void DeleteBook(object sender, RoutedEventArgs e)
+        {
+            Button deleteButton = (Button)sender;
+            string[] data = deleteButton.Name.Split('_');
+            int id = Int32.Parse(data[1]);
+            libraryService.DeleteBook(id);
+            MessageBox.Show("Book deleted successfully!");
             LoadBooks();
         }
     }
