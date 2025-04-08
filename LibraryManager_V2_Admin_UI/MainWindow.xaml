@@ -28,7 +28,7 @@
             <TextBox x:Name="Title" Width="200" Height="20" Margin="5"/>
             <TextBox x:Name="Author" Width="200" Height="20" Margin="5"/>
             <ComboBox x:Name="Genres" Width="200" Height="20" Margin="5"/>
-            <TextBox x:Name="Quantity" Width="100" Height="20" Margin="5" PreviewTextInput="Integer"/>
+            <TextBox x:Name="Quantity" Width="100" Height="20" Margin="5" PreviewTextInput="Integer" TextChanged="CheckInt"/>
             <Button Content="Add Book" Width="100" Height="20" Margin="5" Click="AddBook"/>
         </StackPanel>
         <WrapPanel x:Name="BooksView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="4">

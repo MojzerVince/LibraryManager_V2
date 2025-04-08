@@ -100,5 +100,22 @@ namespace LibraryManager_V2_Admin_UI
             MessageBox.Show("Book deleted successfully!");
             LoadBooks();
         }
+
+        private void CheckInt(object sender, TextChangedEventArgs e)
+        {
+            if(sender is TextBox textBox)
+            {
+                try
+                {
+                    if (int.Parse(textBox.Text) > 2147483647) { } //2,147,483,647
+                }
+                catch
+                {
+                    textBox.Text = string.Empty;
+                    MessageBox.Show("Please enter a valid quantity!", "LibraryManager_V2", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
+        }
     }
 }
