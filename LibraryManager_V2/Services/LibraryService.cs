@@ -30,6 +30,7 @@ namespace LibraryManager_V2.Services
             logs.Add(log);
             logger.SaveToLog(log);
             rep.DeleteBook(id);
+            SaveBooks();
         }
 
         public void CreateCustomLog(string message)
