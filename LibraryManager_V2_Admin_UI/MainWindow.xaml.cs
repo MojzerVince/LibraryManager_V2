@@ -48,19 +48,19 @@ namespace LibraryManager_V2_Admin_UI
                 bookCard.Background = new SolidColorBrush(Colors.Gray);
 
                 //Title
-                TextBlock title = new TextBlock { Text = book.Title, FontSize = 16, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center };
+                TextBlock title = new TextBlock { Text = book.Title, FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
                 bookCard.Children.Add(title);
 
                 //Author
-                TextBlock author = new TextBlock { Text = book.Author, FontSize = 16, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center };
+                TextBlock author = new TextBlock { Text = book.Author, FontSize = 16, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
                 bookCard.Children.Add(author);
 
                 //Category
-                TextBlock category = new TextBlock { Text = book.Genre.ToString(), FontSize = 16, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center };
+                TextBlock category = new TextBlock { Text = book.Genre.ToString(), FontSize = 16, FontWeight = FontWeights.DemiBold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
                 bookCard.Children.Add(category);
 
                 //Quantity
-                TextBlock quantity = new TextBlock { Text = book.Quantity.ToString(), FontSize = 16, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center };
+                TextBlock quantity = new TextBlock { Text = $"{book.Quantity.ToString()} db", FontSize = 16, FontStyle = FontStyles.Italic, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
                 bookCard.Children.Add(quantity);
 
                 //Edit Button
