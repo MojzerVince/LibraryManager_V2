@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManager_V2_Admin_UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200">
+        Title="Library Manager V2" Height="800" Width="1200" ResizeMode="NoResize">
     <Grid Background="#171717">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
