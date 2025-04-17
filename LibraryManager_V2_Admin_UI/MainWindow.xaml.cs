@@ -1,13 +1,8 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 using LibraryManager_V2.Services;
 using LibraryManager_V2.Repositories;
@@ -25,15 +20,17 @@ namespace LibraryManager_V2_Admin_UI
             LoadCategories();
             libraryService.LoadBooks();
             LoadBooks();
+            DispatcherTimer t = new DispatcherTimer();
+            t.Interval = TimeSpan.FromSeconds(1);
+            t.Tick += TimerTick;
+            t.Start();
         }
 
         private void LoadCategories()
         {
             var categories = Enum.GetValues(typeof(Category)).Cast<Category>();
             foreach (var category in categories)
-            {
                 Genres.Items.Add(new ComboBoxItem { Content = category.ToString() });
-            }
         }
 
         private void LoadBooks()
@@ -116,6 +113,11 @@ namespace LibraryManager_V2_Admin_UI
                     return;
                 }
             }
+        }
+
+        private void TimerTick(object? sender, EventArgs e)
+        {
+            time.Text = DateTime.Now.ToString();
         }
     }
 }
