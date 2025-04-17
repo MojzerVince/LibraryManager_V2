@@ -20,6 +20,7 @@ namespace LibraryManager_V2_Admin_UI
             LoadCategories();
             libraryService.LoadBooks();
             LoadBooks();
+            libraryService.CreateCustomLog("Admin login");
             DispatcherTimer t = new DispatcherTimer();
             t.Interval = TimeSpan.FromSeconds(1);
             t.Tick += TimerTick;
