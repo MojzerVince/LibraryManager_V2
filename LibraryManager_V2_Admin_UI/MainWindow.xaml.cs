@@ -62,7 +62,8 @@ namespace LibraryManager_V2_Admin_UI
                 bookCard.Children.Add(quantity);
 
                 //Edit Button
-                Button editButton = new Button { Content = "Edit", Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+                Button editButton = new Button { Content = "Edit",  Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+                editButton.Click += EditBook;
                 bookCard.Children.Add(editButton);
 
                 //Delete Button
@@ -89,6 +90,12 @@ namespace LibraryManager_V2_Admin_UI
             LoadBooks();
         }
 
+        private void AddEditedBook(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Book saved successfully!");
+            LoadBooks();
+        }
+
         private void DeleteBook(object sender, RoutedEventArgs e)
         {
             Button deleteButton = (Button)sender;
@@ -97,6 +104,20 @@ namespace LibraryManager_V2_Admin_UI
             libraryService.DeleteBook(id);
             MessageBox.Show("Book deleted successfully!");
             LoadBooks();
+        }
+
+        private void EditBook(object sender, RoutedEventArgs e)
+        {
+            StackPanel bookCard = (StackPanel)((Button)sender).Parent;
+            string titleText = ((TextBlock)bookCard.Children[0]).Text;
+            bookCard.Children.Clear();
+
+            TextBox title = new TextBox { Text = titleText, FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+            bookCard.Children.Add(title);
+
+            Button saveButton = new Button { Content = "Save", Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+            saveButton.Click += AddEditedBook;
+            bookCard.Children.Add(saveButton);
         }
 
         private void CheckInt(object sender, TextChangedEventArgs e)
