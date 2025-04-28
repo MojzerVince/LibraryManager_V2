@@ -23,6 +23,14 @@ namespace LibraryManager_V2.Services
             logger.SaveToLog(log);
         }
 
+        public void ModifyBook(int id, Book book)
+        {
+            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{rep.GetBookById(id).ID} (Originally as {rep.GetBookById(id).Title})' was modified");
+            logs.Add(log);
+            logger.SaveToLog(log);
+            rep.ModifyBook(id, book);
+        }
+
         public void DeleteBook(int id)
         {
             Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{rep.GetBookById(id).Title}' was removed from library");
