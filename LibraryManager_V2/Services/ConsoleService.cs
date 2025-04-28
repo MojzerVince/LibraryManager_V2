@@ -31,7 +31,7 @@ namespace LibraryManager_V2.Services
             Console.WriteLine("\nPlease select an option:");
             Console.WriteLine("0. Books");
             Console.WriteLine("1. Add book");
-            Console.WriteLine("2. Update book");
+            Console.WriteLine("2. Modify book");
             Console.WriteLine("3. Delete book");
             Console.WriteLine("4. Check logs");
             Console.WriteLine("5. Check messages");
@@ -124,7 +124,7 @@ namespace LibraryManager_V2.Services
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Delete book");
             Console.ResetColor();
-            Console.Write("ID: ");
+            Console.Write("ID: #");
             int id = int.Parse(Console.ReadLine());
             if(service.rep.GetBookById(id) != null)
                 service.DeleteBook(id);
@@ -174,56 +174,34 @@ namespace LibraryManager_V2.Services
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Modify book");
             Console.ResetColor();
-            Console.Write("ID: ");
+            Console.Write("ID: #");
             int id = int.Parse(Console.ReadLine());
             if (service.rep.GetBookById(id) != null)
             {
                 Console.WriteLine();
-                Console.WriteLine("0. Title");
-                Console.WriteLine("1. Author");
-                Console.WriteLine("2. Genre");
-                Console.WriteLine("3. Quantity\n");
-                ConsoleKeyInfo consoleKeyInfo = Console.ReadKey(true);
-                Console.WriteLine();
-                switch (consoleKeyInfo.Key)
-                {
-                    case ConsoleKey.D0:
-                    case ConsoleKey.NumPad0:
-                        Console.Write("New title: ");
-                        service.rep.GetBookById(id).Title = Console.ReadLine();
-                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s title was updated");
-                        Success();
-                        break;
-                    case ConsoleKey.D1:
-                    case ConsoleKey.NumPad1:
-                        Console.Write("New author: ");
-                        service.rep.GetBookById(id).Author = Console.ReadLine();
-                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s author was updated");
-                        Success();
-                        break;
-                    case ConsoleKey.D2:
-                    case ConsoleKey.NumPad2:
-                        GetAllCategories();
-                        Console.Write("\nNew genre: ");
-                        service.rep.GetBookById(id).Genre = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
-                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s genre was updated");
-                        Success();
-                        break;
-                    case ConsoleKey.D3:
-                    case ConsoleKey.NumPad3:
-                        Console.Write("New quantity: ");
-                        service.rep.GetBookById(id).Quantity = int.Parse(Console.ReadLine());
-                        service.CreateCustomLog($"Book '{service.rep.GetBookById(id).Title}'s quantity was updated");
-                        Success();
-                        break;
-                    default:
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write("Invalid option!");
-                        Console.ResetColor();
-                        Console.WriteLine();
-                        break;
-                }
+                Console.WriteLine($"Title: {service.rep.GetBookById(id).Title}");
+                Console.Write("New title: ");
+                string title = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine($"Author: {service.rep.GetBookById(id).Author}");
+                Console.Write("New author: ");
+                string author = Console.ReadLine();
+                GetAllCategories();
+                Console.WriteLine($"Genre: {service.rep.GetBookById(id).Genre.ToString()}");
+                Console.Write("New genre: ");
+                Category genre = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine($"Quantity: {service.rep.GetBookById(id).Quantity}");
+                Console.Write("New quantity: ");
+                int quantity = int.Parse(Console.ReadLine());
+
+                service.ModifyBook(id, new Book(title, author, genre, quantity));
+
+                Console.Clear();
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write("Book successfully modified!");
+                Console.ResetColor();
             }
             else
             {
