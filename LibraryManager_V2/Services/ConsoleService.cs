@@ -178,20 +178,22 @@ namespace LibraryManager_V2.Services
             int id = int.Parse(Console.ReadLine());
             if (service.rep.GetBookById(id) != null)
             {
+                Book cBook = service.rep.GetBookById(id); //current book
+
                 Console.WriteLine();
-                Console.WriteLine($"Title: {service.rep.GetBookById(id).Title}");
+                Console.WriteLine($"Title: {cBook.Title}");
                 Console.Write("New title: ");
                 string title = Console.ReadLine();
                 Console.Clear();
-                Console.WriteLine($"Author: {service.rep.GetBookById(id).Author}");
+                Console.WriteLine($"Author: {cBook.Author}");
                 Console.Write("New author: ");
                 string author = Console.ReadLine();
                 GetAllCategories();
-                Console.WriteLine($"Genre: {service.rep.GetBookById(id).Genre.ToString()}");
+                Console.WriteLine($"Genre: {cBook.Genre}");
                 Console.Write("New genre: ");
                 Category genre = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
                 Console.Clear();
-                Console.WriteLine($"Quantity: {service.rep.GetBookById(id).Quantity}");
+                Console.WriteLine($"Quantity: {cBook.Quantity}");
                 Console.Write("New quantity: ");
                 int quantity = int.Parse(Console.ReadLine());
 
