@@ -22,6 +22,17 @@ namespace LibraryManager_V2.Repositories
             books.Add(book);
         }
 
+        public void ModifyBook(int id, Book book)
+        {
+            Book oldBook = GetBookById(id);
+            if (oldBook != null)
+            {
+                books.Remove(oldBook);
+                book.ID = id;
+                books.Add(book);
+            }
+        }
+
         public void DeleteBook(int id)
         {
             for (int i = 0; i < books.Count; i++)
