@@ -252,16 +252,6 @@ namespace LibraryManager_V2.Services
             Run();
         }
 
-        private void Success()
-        {
-            Console.WriteLine();
-            Console.BackgroundColor = ConsoleColor.Green;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write("Successfull operation!");
-            Console.ResetColor();
-            Console.WriteLine();
-        }
-
         private void MessageCheck()
         {
             Console.Clear();
