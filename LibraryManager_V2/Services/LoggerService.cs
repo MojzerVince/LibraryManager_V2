@@ -18,16 +18,16 @@ namespace LibraryManager_V2.Services
         {
             FileStream fs;
 
-            if (!File.Exists("log.txt"))
+            if (!File.Exists("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt"))
             {
-                fs = File.Create("log.txt");
+                fs = File.Create("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt");
                 fs.Close();
             }
         }
 
         public List<Log> LoadLogs()
         {
-            StreamReader sr = new StreamReader("log.txt");
+            StreamReader sr = new StreamReader("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt");
             string line;
             List<Log> logs = new List<Log>();
             while (!sr.EndOfStream)
@@ -43,7 +43,7 @@ namespace LibraryManager_V2.Services
 
         public void SaveToLog(Log log)
         {
-            StreamWriter sw = new StreamWriter("log.txt", true); //hozzáfűzés true
+            StreamWriter sw = new StreamWriter("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt", true); //hozzáfűzés true
             sw.WriteLine(log.ToString());
             sw.Close();
         }
