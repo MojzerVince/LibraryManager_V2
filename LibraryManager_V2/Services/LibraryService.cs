@@ -88,7 +88,6 @@ namespace LibraryManager_V2.Services
             files.SaveLibrary(rep.GetAllBooks());
         }
 
-
         public List<Log> ReturnLogs()
         {
             return logs;
