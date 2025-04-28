@@ -27,9 +27,10 @@ namespace LibraryManager_V2.Repositories
             Book oldBook = GetBookById(id);
             if (oldBook != null)
             {
-                books.Remove(oldBook);
-                book.ID = id;
-                books.Add(book);
+                oldBook.Title = book.Title;
+                oldBook.Author = book.Author;
+                oldBook.Genre = book.Genre;
+                oldBook.Quantity = book.Quantity;
             }
         }
 
