@@ -52,7 +52,7 @@ namespace LibraryManager_V2.Services
                     break;
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
-                    UpdateBook();
+                    ModifyBook();
                     break;
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
@@ -166,20 +166,19 @@ namespace LibraryManager_V2.Services
             Run();
         }
 
-        private void UpdateBook()
+        private void ModifyBook()
         {
             GetAllBooks();
             Console.WriteLine();
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Update book");
+            Console.WriteLine("Modify book");
             Console.ResetColor();
             Console.Write("ID: ");
             int id = int.Parse(Console.ReadLine());
             if (service.rep.GetBookById(id) != null)
             {
                 Console.WriteLine();
-                Console.WriteLine("Enter the part for update:");
                 Console.WriteLine("0. Title");
                 Console.WriteLine("1. Author");
                 Console.WriteLine("2. Genre");
