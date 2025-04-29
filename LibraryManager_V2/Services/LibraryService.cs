@@ -25,6 +25,7 @@ namespace LibraryManager_V2.Services
             logs.Add(log);
             logger.SaveToLog(log);
             rep.ModifyBook(id, book);
+            SaveBooks();
         }
 
         public void DeleteBook(int id)
