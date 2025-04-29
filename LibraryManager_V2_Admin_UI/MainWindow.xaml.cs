@@ -148,16 +148,19 @@ namespace LibraryManager_V2_Admin_UI
             {
                 //StackPanel
                 StackPanel logCard = new StackPanel();
-                logCard.Margin = new Thickness(10);
+                logCard.Width = 300;
+                logCard.HorizontalAlignment = HorizontalAlignment.Center;
+                logCard.Margin = new Thickness(20);
                 logCard.Background = new SolidColorBrush(Colors.Gray);
                 //Log ID
-                TextBlock logID = new TextBlock { Text = logs.ID.ToString(), FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+                TextBlock logID = new TextBlock { Text = "#" + logs.ID.ToString(), FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
                 logCard.Children.Add(logID);
                 //Log Date
                 TextBlock logDate = new TextBlock { Text = logs.Date.ToString(), FontSize = 16, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
                 logCard.Children.Add(logDate);
                 //Log Message
                 TextBlock logMessage = new TextBlock { Text = logs.Message.ToString(), FontSize = 16, FontWeight = FontWeights.DemiBold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+                logMessage.TextWrapping = TextWrapping.Wrap;
                 logCard.Children.Add(logMessage);
                 LogsView.Items.Add(logCard);
             }
