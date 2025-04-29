@@ -22,6 +22,18 @@ namespace LibraryManager_V2.Repositories
             books.Add(book);
         }
 
+        public void ModifyBook(int id, Book book)
+        {
+            Book oldBook = GetBookById(id);
+            if (oldBook != null)
+            {
+                oldBook.Title = book.Title;
+                oldBook.Author = book.Author;
+                oldBook.Genre = book.Genre;
+                oldBook.Quantity = book.Quantity;
+            }
+        }
+
         public void DeleteBook(int id)
         {
             for (int i = 0; i < books.Count; i++)

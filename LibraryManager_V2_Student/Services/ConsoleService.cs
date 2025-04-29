@@ -35,24 +35,31 @@ namespace LibraryManager_V2_Student.Services
             Console.WriteLine("3. Message to admins");
             Console.WriteLine("4. Exit\n");
 
-            string input = Console.ReadLine();
-
-            switch (input)
+            ConsoleKeyInfo consoleKeyInfo = Console.ReadKey(true);
+            Console.WriteLine();
+            switch (consoleKeyInfo.Key)
             {
-                case "0":
+                case ConsoleKey.D0:
+                case ConsoleKey.NumPad0:
                     GetAllBooks();
                     Run();
                     break;
-                case "1":
+                case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
                     LendBook();
                     break;
-                case "2":
+                case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
                     //ReturnBook();
                     break;
-                case "3":
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
                     //SendMessage();
                     break;
-                case "4":
+                case ConsoleKey.D4:
+                case ConsoleKey.NumPad4:
+                    Console.WriteLine("Exiting...");
+                    Thread.Sleep(500);
                     Environment.Exit(0);
                     break;
                 default:
