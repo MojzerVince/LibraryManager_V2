@@ -1,10 +1,5 @@
 ﻿using LibraryManager_V2.Repositories;
 using LibraryManager_V2.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManager_V2.Services
 {
@@ -18,14 +13,22 @@ namespace LibraryManager_V2.Services
         public void AddBook(Book book)
         {
             rep.AddBook(book);
-            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' was added to library");
+            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '#{book.ID}' '{book.Title}' was added to library");
             logs.Add(log);
             logger.SaveToLog(log);
         }
 
+        public void ModifyBook(int id, Book book)
+        {
+            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '#{rep.GetBookById(id).ID}' was modified");
+            logs.Add(log);
+            logger.SaveToLog(log);
+            rep.ModifyBook(id, book);
+        }
+
         public void DeleteBook(int id)
         {
-            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{rep.GetBookById(id).Title}' was removed from library");
+            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '#{rep.GetBookById(id).ID}' '{rep.GetBookById(id).Title}' was removed from library");
             logs.Add(log);
             logger.SaveToLog(log);
             rep.DeleteBook(id);
@@ -84,7 +87,6 @@ namespace LibraryManager_V2.Services
         {
             files.SaveLibrary(rep.GetAllBooks());
         }
-
 
         public List<Log> ReturnLogs()
         {
