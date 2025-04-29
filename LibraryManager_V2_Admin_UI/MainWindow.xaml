@@ -34,7 +34,7 @@
                 <TextBlock Text="Students View" FontSize="18" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Button>
         </StackPanel>
-        <TextBlock Text="Version: 0.1.1" Grid.Column="0" Grid.Row="5" Foreground="White" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,30"/>
+        <TextBlock Text="Version: 0.3" Grid.Column="0" Grid.Row="5" Foreground="White" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,30"/>
         <TextBlock x:Name="time" Text="[Date]" Grid.Column="0" Grid.Row="4" Foreground="White" FontSize="16" VerticalAlignment="Bottom" Margin="5,0,0,5"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
             <TextBox x:Name="Title" Width="200" Height="20" Margin="5"/>
