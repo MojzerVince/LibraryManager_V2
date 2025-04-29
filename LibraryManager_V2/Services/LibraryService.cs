@@ -41,9 +41,7 @@ namespace LibraryManager_V2.Services
                     CreateCustomLog($"Book '{book.Title}' was lended");
                 }
                 else if(b.ID == book.ID && b.Quantity == 0)
-                {
                     CreateCustomLog($"Book '{book.Title}' is out of stock");
-                }
             }
         }
 
