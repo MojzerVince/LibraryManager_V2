@@ -57,8 +57,9 @@ namespace LibraryManager_V2.Services
             }
         }
 
-        private void CreateCustomLog(string message)
+        public void CreateCustomLog(string message)
         {
+            logs = logger.LoadLogs();
             Log log = new Log(logs.Count + 1, DateTime.Now, message);
             logs.Add(log);
             logger.SaveToLog(log);
@@ -78,11 +79,6 @@ namespace LibraryManager_V2.Services
         public List<Log> ReturnLogs()
         {
             return logs;
-        }
-
-        public new void LoadLogs()
-        {
-            logs = logger.LoadLogs();
         }
     }
 }
