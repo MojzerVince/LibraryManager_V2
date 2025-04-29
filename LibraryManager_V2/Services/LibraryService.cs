@@ -13,35 +13,22 @@ namespace LibraryManager_V2.Services
         public void AddBook(Book book)
         {
             rep.AddBook(book);
-            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '#{book.ID}' '{book.Title}' was added to library");
-            logs.Add(log);
-            logger.SaveToLog(log);
+            CreateCustomLog($"Book '#{book.ID}' '{book.Title}' was added to library");
             SaveBooks();
         }
 
         public void ModifyBook(int id, Book book)
         {
-            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '#{rep.GetBookById(id).ID}' was modified");
-            logs.Add(log);
-            logger.SaveToLog(log);
+            CreateCustomLog($"Book '#{rep.GetBookById(id).ID}' was modified");
             rep.ModifyBook(id, book);
             SaveBooks();
         }
 
         public void DeleteBook(int id)
         {
-            Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '#{rep.GetBookById(id).ID}' '{rep.GetBookById(id).Title}' was removed from library");
-            logs.Add(log);
-            logger.SaveToLog(log);
+            CreateCustomLog($"Book '#{rep.GetBookById(id).ID}' '{rep.GetBookById(id).Title}' was removed from library");
             rep.DeleteBook(id);
             SaveBooks();
-        }
-
-        public void CreateCustomLog(string message)
-        {
-            Log log = new Log(logs.Count + 1, DateTime.Now, message);
-            logs.Add(log);
-            logger.SaveToLog(log);
         }
 
         public void LendBook(Book book)
@@ -51,15 +38,11 @@ namespace LibraryManager_V2.Services
                 if(b.ID == book.ID && b.Quantity > 0)
                 {
                     b.Quantity--;
-                    Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' was lended");
-                    logs.Add(log);
-                    logger.SaveToLog(log);
+                    CreateCustomLog($"Book '{book.Title}' was lended");
                 }
                 else if(b.ID == book.ID && b.Quantity == 0)
                 {
-                    Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' is out of stock");
-                    logs.Add(log);
-                    logger.SaveToLog(log);
+                    CreateCustomLog($"Book '{book.Title}' is out of stock");
                 }
             }
         }
@@ -71,11 +54,16 @@ namespace LibraryManager_V2.Services
                 if (b.ID == book.ID && b.Quantity > 0)
                 {
                     b.Quantity++;
-                    Log log = new Log(logs.Count + 1, DateTime.Now, $"Book '{book.Title}' was returned");
-                    logs.Add(log);
-                    logger.SaveToLog(log);
+                    CreateCustomLog($"Book '{book.Title}' was returned");
                 }
             }
+        }
+
+        private void CreateCustomLog(string message)
+        {
+            Log log = new Log(logs.Count + 1, DateTime.Now, message);
+            logs.Add(log);
+            logger.SaveToLog(log);
         }
 
         public void LoadBooks()
