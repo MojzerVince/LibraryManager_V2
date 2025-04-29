@@ -62,7 +62,7 @@ namespace LibraryManager_V2_Admin_UI
                 bookCard.Children.Add(quantity);
 
                 //Edit Button
-                Button editButton = new Button { Content = "Edit",  Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+                Button editButton = new Button { Content = "Edit", Name = $"ID_{book.ID}",  Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
                 editButton.Click += EditBook;
                 bookCard.Children.Add(editButton);
 
@@ -90,8 +90,16 @@ namespace LibraryManager_V2_Admin_UI
             LoadBooks();
         }
 
-        private void AddEditedBook(object sender, RoutedEventArgs e)
+        private void SaveEditedBook(object sender, RoutedEventArgs e)
         {
+            int id = Int32.Parse(((Button)sender).Name.Split('_')[1]);
+            Book b = new Book(
+                ((TextBox)((StackPanel)((Button)sender).Parent).Children[0]).Text, 
+                ((TextBox)((StackPanel)((Button)sender).Parent).Children[1]).Text, 
+                (Category)Enum.Parse(typeof(Category), ((ComboBox)((StackPanel)((Button)sender).Parent).Children[2]).Text),
+                ((TextBox)((StackPanel)((Button)sender).Parent).Children[3]).Text == "" ? 0 :
+                    Int32.Parse(((TextBox)((StackPanel)((Button)sender).Parent).Children[3]).Text));
+            libraryService.ModifyBook(id, b);
             MessageBox.Show("Book saved successfully!");
             LoadBooks();
         }
@@ -99,8 +107,7 @@ namespace LibraryManager_V2_Admin_UI
         private void DeleteBook(object sender, RoutedEventArgs e)
         {
             Button deleteButton = (Button)sender;
-            string[] data = deleteButton.Name.Split('_');
-            int id = Int32.Parse(data[1]);
+            int id = Int32.Parse(deleteButton.Name.Split('_')[1]);
             libraryService.DeleteBook(id);
             MessageBox.Show("Book deleted successfully!");
             LoadBooks();
@@ -110,13 +117,33 @@ namespace LibraryManager_V2_Admin_UI
         {
             StackPanel bookCard = (StackPanel)((Button)sender).Parent;
             string titleText = ((TextBlock)bookCard.Children[0]).Text;
+            string authorText = ((TextBlock)bookCard.Children[1]).Text;
+            Category cat = (Category)Enum.Parse(typeof(Category), ((TextBlock)bookCard.Children[2]).Text);
+            int quantText = Int32.Parse(((TextBlock)bookCard.Children[3]).Text.Split(' ')[0]);
             bookCard.Children.Clear();
 
-            TextBox title = new TextBox { Text = titleText, FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+            int id = Int32.Parse(((Button)sender).Name.Split('_')[1]);
+
+            TextBox title = new TextBox { Text = titleText, FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.Black), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
             bookCard.Children.Add(title);
 
-            Button saveButton = new Button { Content = "Save", Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
-            saveButton.Click += AddEditedBook;
+            TextBox author = new TextBox { Text = authorText, FontSize = 16, Foreground = new SolidColorBrush(Colors.Black), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+            bookCard.Children.Add(author);
+
+            ComboBox genres = new ComboBox { Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+            var categories = Enum.GetValues(typeof(Category)).Cast<Category>();
+            foreach (var category in categories)
+                genres.Items.Add(new ComboBoxItem { Content = category.ToString() });
+            genres.SelectedIndex = (int)cat; //ebben az esetben az (int)-el kapjuk meg az indexet, mivel egy enumot használunk
+            bookCard.Children.Add(genres);
+
+            TextBox quantity = new TextBox { Text = quantText.ToString(), FontSize = 16, FontStyle = FontStyles.Italic, Foreground = new SolidColorBrush(Colors.Black), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+            quantity.TextChanged += CheckInt;
+            quantity.PreviewTextInput += Integer;
+            bookCard.Children.Add(quantity);
+
+            Button saveButton = new Button { Content = "Save", Name = $"ID_{id}", Width = 100, Height = 20, Margin = new Thickness(5), HorizontalAlignment = HorizontalAlignment.Center };
+            saveButton.Click += SaveEditedBook;
             bookCard.Children.Add(saveButton);
         }
 
