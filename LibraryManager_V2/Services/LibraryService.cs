@@ -69,9 +69,7 @@ namespace LibraryManager_V2.Services
         public void LoadBooks()
         {
             foreach(Book b in files.LoadLibrary())
-            {
                 rep.AddBook(b);
-            }
         }
 
         public void SaveBooks()
