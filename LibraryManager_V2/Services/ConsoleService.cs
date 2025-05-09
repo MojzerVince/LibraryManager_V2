@@ -11,24 +11,15 @@ namespace LibraryManager_V2.Services
     {
         private LibraryService service;
 
-        private void ExecuteWithLogging(Action action, string message)
+        public ConsoleService(LibraryService service)
         {
-            try
-            {
-                Console.WriteLine(message);
-                action();
-                Thread.Sleep(500);
-            }
-            catch (Exception ex)
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine(ex.Message);
-                Console.ResetColor();
-            }
+            this.service = service;
 
             try
             {
+                Console.WriteLine("Loading logs...");
+                service.LoadLogs();
+                Thread.Sleep(500);
                 Console.WriteLine("Loading book...");
                 service.LoadBooks();
                 Thread.Sleep(500);
