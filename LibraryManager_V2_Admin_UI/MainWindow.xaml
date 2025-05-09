@@ -8,6 +8,7 @@
         Title="Library Manager V2" Height="800" Width="1200" ResizeMode="NoResize">
     <Grid Background="#171717">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.3*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -32,21 +33,23 @@
             <Button Background="#373737" Margin="5,10,5,0" Height="35">
                 <TextBlock Text="Students View" FontSize="18" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Button>
-            <Button Background="#373737" Margin="5,10,5,0" Height="35">
-                <TextBlock Text="Log View" FontSize="18" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
         </StackPanel>
-        <TextBlock Text="Version: 0.2" Grid.Column="0" Grid.Row="5" Foreground="White" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,30"/>
+      
+        <TextBlock Text="Version: 0.3" Grid.Column="0" Grid.Row="5" Foreground="White" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,30"/>
+
         <TextBlock x:Name="time" Text="[Date]" Grid.Column="0" Grid.Row="4" Foreground="White" FontSize="16" VerticalAlignment="Bottom" Margin="5,0,0,5"/>
-        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5">
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
             <TextBox x:Name="Title" Width="200" Height="20" Margin="5"/>
             <TextBox x:Name="Author" Width="200" Height="20" Margin="5"/>
             <ComboBox x:Name="Genres" Width="200" Height="20" Margin="5"/>
             <TextBox x:Name="Quantity" Width="100" Height="20" Margin="5" PreviewTextInput="Integer" TextChanged="CheckInt"/>
             <Button Content="Add Book" Width="100" Height="20" Margin="5" Click="AddBook"/>
         </StackPanel>
-        <WrapPanel x:Name="BooksView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="4">
+        <WrapPanel x:Name="BooksView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3">
 
         </WrapPanel>
+        <ListView x:Name="LogsView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="4" Grid.ColumnSpan="2" Background="#272727">
+            
+        </ListView>
     </Grid>
 </Window>

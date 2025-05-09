@@ -75,13 +75,6 @@ namespace LibraryManager_V2_Admin_UI
             }
         }
 
-        //Leellenőrzi, hogy a felhasználó csak számokat írjon be a Quantity input mezőbe
-        private void Integer(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !e.Text.All(cc => Char.IsNumber(cc));
-            base.OnPreviewTextInput(e);
-        }
-
         private void AddBook(object sender, RoutedEventArgs e)
         {
             Book b = new Book(Title.Text, Author.Text, (Category)Genres.SelectedIndex, Int32.Parse(Quantity.Text));
@@ -147,6 +140,32 @@ namespace LibraryManager_V2_Admin_UI
             bookCard.Children.Add(saveButton);
         }
 
+        private void LoadLogs()
+        {
+            LogsView.Items.Clear(); //Törli a régi logokat a nézetből és megelőzi a duplikációt
+
+            foreach (var logs in libraryService.ReturnLogs())
+            {
+                //StackPanel
+                StackPanel logCard = new StackPanel();
+                logCard.Width = 300;
+                logCard.HorizontalAlignment = HorizontalAlignment.Center;
+                logCard.Margin = new Thickness(20);
+                logCard.Background = new SolidColorBrush(Colors.Gray);
+                //Log ID
+                TextBlock logID = new TextBlock { Text = "#" + logs.ID.ToString(), FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+                logCard.Children.Add(logID);
+                //Log Date
+                TextBlock logDate = new TextBlock { Text = logs.Date.ToString(), FontSize = 16, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+                logCard.Children.Add(logDate);
+                //Log Message
+                TextBlock logMessage = new TextBlock { Text = logs.Message.ToString(), FontSize = 16, FontWeight = FontWeights.DemiBold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+                logMessage.TextWrapping = TextWrapping.Wrap;
+                logCard.Children.Add(logMessage);
+                LogsView.Items.Add(logCard);
+            }
+        }
+
         private void CheckInt(object sender, TextChangedEventArgs e)
         {
             try
@@ -164,6 +183,14 @@ namespace LibraryManager_V2_Admin_UI
         private void TimerTick(object? sender, EventArgs e)
         {
             time.Text = DateTime.Now.ToString();
+            LoadLogs(); //nem túl optimalizált
+        }
+
+        //Leellenőrzi, hogy a felhasználó csak számokat írjon be a Quantity input mezőbe
+        private void Integer(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.All(cc => Char.IsNumber(cc));
+            base.OnPreviewTextInput(e);
         }
     }
 }
