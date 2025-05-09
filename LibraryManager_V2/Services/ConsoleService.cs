@@ -6,14 +6,12 @@ namespace LibraryManager_V2.Services
     {
         private LibraryService service;
 
-        public ConsoleService(LibraryService service)
+        private void ExecuteWithLogging(Action action, string message)
         {
-            this.service = service;
-
             try
             {
-                Console.WriteLine("Loading logs...");
-                service.LoadLogs();
+                Console.WriteLine(message);
+                action();
                 Thread.Sleep(500);
             }
             catch (Exception ex)
