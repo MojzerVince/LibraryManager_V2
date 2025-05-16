@@ -38,7 +38,6 @@ namespace LibraryManager_V2.Services
                     catch (Exception ex)
                     {
                         logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), "RESTORED - " + parts[2], "Logger Service"));
-                        Console.ResetColor();
                     }
                 }
             return logs;
