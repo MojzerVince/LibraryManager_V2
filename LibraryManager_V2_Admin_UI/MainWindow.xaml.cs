@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 using LibraryManager_V2.Services;
 using LibraryManager_V2.Repositories;
@@ -179,6 +180,23 @@ namespace LibraryManager_V2_Admin_UI
                 logCard.Children.Add(logMessage);
                 LogsView.Items.Add(logCard);
             }
+
+            Button openLogFile = new Button { Content = "Open log file", Width = 300,  Height = 35, FontSize = 20, Margin = new Thickness(20), HorizontalAlignment = HorizontalAlignment.Center};
+            openLogFile.Click += OpenLogFile;
+            LogsView.Items.Add(openLogFile);
+        }
+
+        private void OpenLogFile(object sender, RoutedEventArgs e)
+        {
+            var fileToOpen = "..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt";
+            Process process = new Process();
+            process.StartInfo = new ProcessStartInfo()
+            {
+                UseShellExecute = true,
+                FileName = fileToOpen
+            };
+            process.Start();
+            //process.WaitForExit();
         }
 
         private void CheckInt(object sender, TextChangedEventArgs e)
