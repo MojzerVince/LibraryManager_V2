@@ -18,9 +18,11 @@ namespace LibraryManager_V2_Admin_UI
         {
             InitializeComponent();
             LoadCategories();
+            libraryService.LoadLogs();
+            LoadLogs();
             libraryService.LoadBooks();
             LoadBooks();
-            libraryService.CreateCustomLog("Admin login");
+            libraryService.CreateCustomLog("Program started");
             DispatcherTimer t = new DispatcherTimer();
             t.Interval = TimeSpan.FromSeconds(1);
             t.Tick += TimerTick;
