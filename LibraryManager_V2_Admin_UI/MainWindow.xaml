@@ -35,7 +35,7 @@
             </Button>
         </StackPanel>
       
-        <TextBlock Text="Version: 0.3.1" Grid.Column="0" Grid.Row="5" Foreground="White" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,30"/>
+        <TextBlock Text="Version: 0.3.2" Grid.Column="0" Grid.Row="5" Foreground="White" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,30"/>
 
         <TextBlock x:Name="time" Text="[Date]" Grid.Column="0" Grid.Row="4" Foreground="White" FontSize="16" VerticalAlignment="Bottom" Margin="5,0,0,5"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
