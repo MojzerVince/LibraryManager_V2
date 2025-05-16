@@ -59,7 +59,7 @@ namespace LibraryManager_V2.Services
 
         public void CreateCustomLog(string message)
         {
-            Log log = new Log(logs.Count + 1, DateTime.Now, message);
+            Log log = new Log(logs.Count + 1, DateTime.Now, message, "Admin");
             logs.Add(log);
             logger.SaveToLog(log);
         }

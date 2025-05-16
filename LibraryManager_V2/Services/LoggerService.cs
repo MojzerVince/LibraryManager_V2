@@ -24,10 +24,6 @@ namespace LibraryManager_V2.Services
         {
             using (StreamReader sr = new StreamReader("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt"))
             {
-              string line;
-              List<Log> logs = new List<Log>();
-              while (!sr.EndOfStream)
-              {
                 string line;
                 string[] parts = new string[4];
                 List<Log> logs = new List<Log>();
@@ -44,8 +40,7 @@ namespace LibraryManager_V2.Services
                         logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), "RESTORED - " + parts[2], "Logger Service"));
                     }
                 }
-              }
-            return logs;
+                return logs;
             }
         }
 
