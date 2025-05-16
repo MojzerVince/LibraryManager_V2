@@ -59,8 +59,7 @@ namespace LibraryManager_V2.Services
 
         public void CreateCustomLog(string message)
         {
-            logs = logger.LoadLogs();
-            Log log = new Log(logs.Count + 1, DateTime.Now, message);
+            Log log = new Log(logs.Count + 1, DateTime.Now, message, "Admin");
             logs.Add(log);
             logger.SaveToLog(log);
         }
@@ -69,16 +68,24 @@ namespace LibraryManager_V2.Services
         {
             foreach(Book b in files.LoadLibrary())
                 rep.AddBook(b);
+            CreateCustomLog("Books successfully loaded from file");
         }
 
         public void SaveBooks()
         {
             files.SaveLibrary(rep.GetAllBooks());
+            CreateCustomLog("Books successfully saved to file");
         }
 
         public List<Log> ReturnLogs()
         {
             return logs;
+        }
+
+        public new void LoadLogs()
+        {
+            logs = logger.LoadLogs();
+            CreateCustomLog("Logs successfully loaded from file");
         }
     }
 }

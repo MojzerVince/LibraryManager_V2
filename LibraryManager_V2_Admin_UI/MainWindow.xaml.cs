@@ -18,9 +18,11 @@ namespace LibraryManager_V2_Admin_UI
         {
             InitializeComponent();
             LoadCategories();
+            libraryService.LoadLogs();
+            LoadLogs();
             libraryService.LoadBooks();
             LoadBooks();
-            libraryService.CreateCustomLog("Admin login");
+            libraryService.CreateCustomLog("Program started");
             DispatcherTimer t = new DispatcherTimer();
             t.Interval = TimeSpan.FromSeconds(1);
             t.Tick += TimerTick;
@@ -44,6 +46,10 @@ namespace LibraryManager_V2_Admin_UI
                 StackPanel bookCard = new StackPanel();
                 bookCard.Margin = new Thickness(10);
                 bookCard.Background = new SolidColorBrush(Colors.Gray);
+
+                //ID
+                TextBlock id = new TextBlock { Text = "#" + book.ID.ToString(), FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+                bookCard.Children.Add(id);
 
                 //Title
                 TextBlock title = new TextBlock { Text = book.Title, FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
@@ -85,22 +91,27 @@ namespace LibraryManager_V2_Admin_UI
 
         private void SaveEditedBook(object sender, RoutedEventArgs e)
         {
-            int id = Int32.Parse(((Button)sender).Name.Split('_')[1]);
+            StackPanel bookCard = (StackPanel)((Button)sender).Parent;
+            string idText = ((TextBlock)bookCard.Children[0]).Text;
+            int id = Int32.Parse(idText.Substring(1));
+
             Book b = new Book(
-                ((TextBox)((StackPanel)((Button)sender).Parent).Children[0]).Text, 
                 ((TextBox)((StackPanel)((Button)sender).Parent).Children[1]).Text, 
-                (Category)Enum.Parse(typeof(Category), ((ComboBox)((StackPanel)((Button)sender).Parent).Children[2]).Text),
-                ((TextBox)((StackPanel)((Button)sender).Parent).Children[3]).Text == "" ? 0 :
-                    Int32.Parse(((TextBox)((StackPanel)((Button)sender).Parent).Children[3]).Text));
+                ((TextBox)((StackPanel)((Button)sender).Parent).Children[2]).Text, 
+                (Category)Enum.Parse(typeof(Category), ((ComboBox)((StackPanel)((Button)sender).Parent).Children[3]).Text),
+                ((TextBox)((StackPanel)((Button)sender).Parent).Children[4]).Text == "" ? 0 :
+                    Int32.Parse(((TextBox)((StackPanel)((Button)sender).Parent).Children[4]).Text));
             libraryService.ModifyBook(id, b);
-            MessageBox.Show("Book saved successfully!");
+            MessageBox.Show("Book modified successfully!");
             LoadBooks();
         }
 
         private void DeleteBook(object sender, RoutedEventArgs e)
         {
-            Button deleteButton = (Button)sender;
-            int id = Int32.Parse(deleteButton.Name.Split('_')[1]);
+            StackPanel bookCard = (StackPanel)((Button)sender).Parent;
+            string idText = ((TextBlock)bookCard.Children[0]).Text;
+            int id = Int32.Parse(idText.Substring(1));
+
             libraryService.DeleteBook(id);
             MessageBox.Show("Book deleted successfully!");
             LoadBooks();
@@ -109,13 +120,17 @@ namespace LibraryManager_V2_Admin_UI
         private void EditBook(object sender, RoutedEventArgs e)
         {
             StackPanel bookCard = (StackPanel)((Button)sender).Parent;
-            string titleText = ((TextBlock)bookCard.Children[0]).Text;
-            string authorText = ((TextBlock)bookCard.Children[1]).Text;
-            Category cat = (Category)Enum.Parse(typeof(Category), ((TextBlock)bookCard.Children[2]).Text);
-            int quantText = Int32.Parse(((TextBlock)bookCard.Children[3]).Text.Split(' ')[0]);
+            string idText = ((TextBlock)bookCard.Children[0]).Text;
+            string titleText = ((TextBlock)bookCard.Children[1]).Text;
+            string authorText = ((TextBlock)bookCard.Children[2]).Text;
+            Category cat = (Category)Enum.Parse(typeof(Category), ((TextBlock)bookCard.Children[3]).Text);
+            int quantText = Int32.Parse(((TextBlock)bookCard.Children[4]).Text.Split(' ')[0]);
             bookCard.Children.Clear();
 
-            int id = Int32.Parse(((Button)sender).Name.Split('_')[1]);
+            int id = Int32.Parse(idText.Substring(1));
+
+            TextBlock idString = new TextBlock { Text = idText, FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.Black), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+            bookCard.Children.Add(idString);
 
             TextBox title = new TextBox { Text = titleText, FontSize = 16, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Colors.Black), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
             bookCard.Children.Add(title);

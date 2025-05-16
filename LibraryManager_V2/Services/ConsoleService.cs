@@ -14,13 +14,31 @@ namespace LibraryManager_V2.Services
         public ConsoleService(LibraryService service)
         {
             this.service = service;
+
+            try
+            {
+                service.CreateCustomLog("Started program");
+                Console.WriteLine("Loading logs...");
+                service.LoadLogs();
+                Thread.Sleep(500);
+                Console.WriteLine("Loading book...");
+                service.LoadBooks();
+                Thread.Sleep(500);
+            }
+            catch (Exception ex)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine(ex.Message);
+                Console.ResetColor();
+            }
+            Console.Clear();
+
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Welcome to the Library Manager!");
             Console.ResetColor();
-            service.LoadLogs();
-            service.LoadBooks();
-          
+
             //TEST ONLY
             //service.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", Category.Fantasy, 5));
             //service.AddBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", Category.Fantasy, 3));
@@ -71,6 +89,7 @@ namespace LibraryManager_V2.Services
                 case ConsoleKey.NumPad6:
                     service.SaveBooks();
                     Console.WriteLine("Exiting...");
+                    service.CreateCustomLog("Exited from program");
                     Thread.Sleep(500);
                     Environment.Exit(0);
                     break;

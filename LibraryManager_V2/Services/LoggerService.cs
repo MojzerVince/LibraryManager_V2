@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LibraryManager_V2.Models;
+﻿using LibraryManager_V2.Models;
 
 namespace LibraryManager_V2.Services
 {
@@ -27,25 +22,32 @@ namespace LibraryManager_V2.Services
 
         public List<Log> LoadLogs()
         {
-            StreamReader sr = new StreamReader("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt");
-            string line;
-            List<Log> logs = new List<Log>();
-            while (!sr.EndOfStream)
+            using (StreamReader sr = new StreamReader("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt"))
             {
-                line = sr.ReadLine();
-                string[] parts = line.Split('|');
-                Log log = new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2]);
-                logs.Add(log);
+                string line;
+                string[] parts = new string[4];
+                List<Log> logs = new List<Log>();
+                while (!sr.EndOfStream)
+                {
+                    try 
+                    {
+                        line = sr.ReadLine();
+                        parts = line.Split('|');
+                        logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]));
+                    }
+                    catch (Exception ex)
+                    {
+                        logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), "RESTORED - " + parts[2], "Logger Service"));
+                    }
+                }
+                return logs;
             }
-            sr.Close();
-            return logs;
         }
 
         public void SaveToLog(Log log)
         {
-            StreamWriter sw = new StreamWriter("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt", true); //hozzáfűzés true
-            sw.WriteLine(log.ToString());
-            sw.Close();
+            using (StreamWriter sw = new StreamWriter("..\\..\\..\\..\\LibraryManager_V2\\bin\\Debug\\net8.0\\log.txt", true))
+                sw.WriteLine(log.ToString());
         }
     }
 }
