@@ -1,0 +1,55 @@
+﻿<Window x:Class="LibraryManager_V2_Admin_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManager_V2_Admin_UI"
+        mc:Ignorable="d"
+        Title="Library Manager V2" Height="800" Width="1200" ResizeMode="NoResize">
+    <Grid Background="#171717">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.3*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Background="#272727" Orientation="Vertical">
+            <TextBlock Text="Library Manager" FontSize="28" FontWeight="Bold" Foreground="White" Margin="10,20,10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="By: Mojzi" FontSize="20" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Rectangle Height="2" Fill="#171717" Margin="5,10,5,0"/>
+            <Button Background="#373737" Margin="5,20,5,0" Height="35">
+                <TextBlock Text="Library View" FontSize="18" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+            <Button Background="#373737" Margin="5,10,5,0" Height="35">
+                <TextBlock Text="Students View" FontSize="18" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+      
+        <TextBlock Text="Version: 0.3.1" Grid.Column="0" Grid.Row="5" Foreground="White" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,30"/>
+
+        <TextBlock x:Name="time" Text="[Date]" Grid.Column="0" Grid.Row="4" Foreground="White" FontSize="16" VerticalAlignment="Bottom" Margin="5,0,0,5"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
+            <TextBox x:Name="Title" Width="200" Height="20" Margin="5"/>
+            <TextBox x:Name="Author" Width="200" Height="20" Margin="5"/>
+            <ComboBox x:Name="Genres" Width="200" Height="20" Margin="5"/>
+            <TextBox x:Name="Quantity" Width="100" Height="20" Margin="5" PreviewTextInput="Integer" TextChanged="CheckInt"/>
+            <Button Content="Add Book" Width="100" Height="20" Margin="5" Click="AddBook"/>
+        </StackPanel>
+        <WrapPanel x:Name="BooksView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3">
+
+        </WrapPanel>
+        <ListView x:Name="LogsView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="4" Grid.ColumnSpan="2" Background="#272727">
+            
+        </ListView>
+    </Grid>
+</Window>
