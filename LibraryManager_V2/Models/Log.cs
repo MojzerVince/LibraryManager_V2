@@ -17,7 +17,7 @@
 
         public override string ToString()
         {
-            return $"{ID}|{Date}|{User}|{Message}";
+            return $"{ID}|{Date}|{Message}|{User}";
         }
     }
 }
