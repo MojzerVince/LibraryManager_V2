@@ -178,6 +178,9 @@ namespace LibraryManager_V2_Admin_UI
                 TextBlock logMessage = new TextBlock { Text = logs.Message.ToString(), FontSize = 16, FontWeight = FontWeights.DemiBold, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
                 logMessage.TextWrapping = TextWrapping.Wrap;
                 logCard.Children.Add(logMessage);
+                //Log User
+                TextBlock logUser = new TextBlock { Text = logs.User.ToString(), FontSize = 16, FontStyle = FontStyles.Italic, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(5) };
+                logCard.Children.Add(logUser);
                 LogsView.Items.Add(logCard);
             }
 
