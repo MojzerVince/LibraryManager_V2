@@ -24,24 +24,21 @@ namespace LibraryManager_V2.Services
         {
             StreamReader sr = new StreamReader("log.txt");
             string line;
+            string[] parts = new string[4];
             List<Log> logs = new List<Log>();
             while (!sr.EndOfStream)
             {
                 try 
                 {
                     line = sr.ReadLine();
-                    string[] parts = line.Split('|');
-                    Log log = new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]);
-                    logs.Add(log);
+                    parts = line.Split('|');
+                    logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]));
                 }
                 catch (Exception ex)
                 {
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine(ex.Message);
+                    logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), "RESTORED - " + parts[2], "Logger Service"));
                     Console.ResetColor();
                 }
-                
             }
             sr.Close();
             return logs;
