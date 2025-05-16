@@ -79,6 +79,7 @@ namespace LibraryManager_V2.Services
         {
             foreach(Book b in files.LoadLibrary())
                 rep.AddBook(b);
+            logs.Add(new Log(logs.Count + 1, DateTime.Now, "Library successfully loaded from file", "Admin"));
         }
 
         public void SaveBooks()
@@ -94,6 +95,7 @@ namespace LibraryManager_V2.Services
         public new void LoadLogs()
         {
             logs = logger.LoadLogs();
+            logs.Add(new Log(logs.Count + 1, DateTime.Now, "Logs successfully loaded from file", "Admin"));
         }
     }
 }
