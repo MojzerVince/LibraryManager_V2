@@ -32,10 +32,21 @@ namespace LibraryManager_V2.Services
             List<Log> logs = new List<Log>();
             while (!sr.EndOfStream)
             {
-                line = sr.ReadLine();
-                string[] parts = line.Split('|');
-                Log log = new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]);
-                logs.Add(log);
+                try 
+                {
+                    line = sr.ReadLine();
+                    string[] parts = line.Split('|');
+                    Log log = new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]);
+                    logs.Add(log);
+                }
+                catch (Exception ex)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(ex.Message);
+                    Console.ResetColor();
+                }
+                
             }
             sr.Close();
             return logs;
