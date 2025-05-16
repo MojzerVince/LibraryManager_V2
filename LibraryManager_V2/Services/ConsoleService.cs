@@ -17,6 +17,7 @@ namespace LibraryManager_V2.Services
 
             try
             {
+                service.CreateCustomLog("Started program");
                 Console.WriteLine("Loading logs...");
                 service.LoadLogs();
                 Thread.Sleep(500);
@@ -88,6 +89,7 @@ namespace LibraryManager_V2.Services
                 case ConsoleKey.NumPad6:
                     service.SaveBooks();
                     Console.WriteLine("Exiting...");
+                    service.CreateCustomLog("Exited from program");
                     Thread.Sleep(500);
                     Environment.Exit(0);
                     break;
