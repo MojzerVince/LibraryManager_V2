@@ -22,33 +22,33 @@ namespace LibraryManager_V2.Services
 
         public List<Log> LoadLogs()
         {
-            StreamReader sr = new StreamReader("log.txt");
-            string line;
-            string[] parts = new string[4];
-            List<Log> logs = new List<Log>();
-            while (!sr.EndOfStream)
+            using (StreamReader sr = new StreamReader("log.txt"))
             {
-                try 
+                string line;
+                string[] parts = new string[4];
+                List<Log> logs = new List<Log>();
+                while (!sr.EndOfStream)
                 {
-                    line = sr.ReadLine();
-                    parts = line.Split('|');
-                    logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]));
+                    try 
+                    {
+                        line = sr.ReadLine();
+                        parts = line.Split('|');
+                        logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]));
+                    }
+                    catch (Exception ex)
+                    {
+                        logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), "RESTORED - " + parts[2], "Logger Service"));
+                        Console.ResetColor();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    logs.Add(new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), "RESTORED - " + parts[2], "Logger Service"));
-                    Console.ResetColor();
-                }
-            }
-            sr.Close();
             return logs;
+            }
         }
 
         public void SaveToLog(Log log)
         {
-            StreamWriter sw = new StreamWriter("log.txt", true); //hozzáfűzés true
-            sw.WriteLine(log.ToString());
-            sw.Close();
+            using (StreamWriter sw = new StreamWriter("log.txt", true))
+                sw.WriteLine(log.ToString());
         }
     }
 }
