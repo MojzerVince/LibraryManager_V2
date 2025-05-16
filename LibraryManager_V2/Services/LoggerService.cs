@@ -34,7 +34,7 @@ namespace LibraryManager_V2.Services
             {
                 line = sr.ReadLine();
                 string[] parts = line.Split('|');
-                Log log = new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2]);
+                Log log = new Log(int.Parse(parts[0]), DateTime.Parse(parts[1]), parts[2], parts[3]);
                 logs.Add(log);
             }
             sr.Close();
