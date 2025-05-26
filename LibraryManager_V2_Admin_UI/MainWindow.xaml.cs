@@ -39,7 +39,7 @@ namespace LibraryManager_V2_Admin_UI
 
         private void LoadBooks()
         {
-            BooksView.Children.Clear(); //Törli a régi könyveket a nézetből és megelőzi a duplikációt
+            /*BooksView.Children.Clear(); //Törli a régi könyveket a nézetből és megelőzi a duplikációt
             var books = libraryService.rep.GetAllBooks();
             foreach (var book in books)
             {
@@ -79,7 +79,9 @@ namespace LibraryManager_V2_Admin_UI
                 bookCard.Children.Add(deleteButton);
 
                 BooksView.Children.Add(bookCard);
-            }
+            }*/
+
+            //Törli a régi könyveket a nézetből és megelőzi a duplikációt
         }
 
         private void AddBook(object sender, RoutedEventArgs e)

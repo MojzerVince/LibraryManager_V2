@@ -45,9 +45,17 @@
             <TextBox x:Name="Quantity" Width="100" Height="20" Margin="5" PreviewTextInput="Integer" TextChanged="CheckInt"/>
             <Button Content="Add Book" Width="100" Height="20" Margin="5" Click="AddBook"/>
         </StackPanel>
-        <WrapPanel x:Name="BooksView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3">
-
-        </WrapPanel>
+        <ListView x:Name="BooksView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" Background="#171717">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Title" Width="210" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Author" Width="140" DisplayMemberBinding="{Binding Author}"/>
+                    <GridViewColumn Header="Genre" Width="125" DisplayMemberBinding="{Binding Genre}"/>
+                    <GridViewColumn Header="Quantity" Width="50" DisplayMemberBinding="{Binding Quantity}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <ListView x:Name="LogsView" Grid.Row="1" Grid.RowSpan="4" Grid.Column="4" Grid.ColumnSpan="2" Background="#272727">
             
         </ListView>
